@@ -17,7 +17,7 @@ trait HasUserTests
     /**
      * @return mixed
      */
-    public function setup_admin_user()
+    public function setupAdminUser()
     {
         Artisan::call('db:seed');
         return User::whereEmail('admin@example.com')->first();
