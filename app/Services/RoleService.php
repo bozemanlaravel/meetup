@@ -17,4 +17,9 @@ class RoleService
     {
         return self::get()[$id];
     }
+
+    public static function getId($name)
+    {
+        return array_flip(self::get())[$name];
+    }
 }
