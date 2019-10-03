@@ -17,7 +17,7 @@ trait HasMeetingTests
      * @param User $organizer_user
      * @return array
      */
-    public function make_meeting(User $organizer_user): array
+    public function makeMeeting(User $organizer_user): array
     {
         $meeting_data = factory(Meeting::class)->make(['organizer_id' => $organizer_user->id])->toArray();
         $meeting = Meeting::create($meeting_data);
@@ -29,7 +29,7 @@ trait HasMeetingTests
      * @param Meeting $meeting
      * @return MeetingUser
      */
-    public function make_meeting_user(User $user, Meeting $meeting): MeetingUser
+    public function makeMeetingUser(User $user, Meeting $meeting): MeetingUser
     {
         $meeting_user = MeetingUser::create([
             'user_id' => $user->id,
