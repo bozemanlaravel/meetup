@@ -4,6 +4,7 @@ namespace App;
 
 use App\Services\RoleService;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -31,8 +32,17 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function isAdmin()
+    public function isAdmin() : bool
     {
         return RoleService::getName($this->role_id) === 'administrator';
+    }
+
+    /**
+     * @return HasManyThrough
+     */
+    public function meetings() : HasManyThrough
+    {
+        return $this->hasManyThrough(Meeting::class,MeetingUser::class,
+            'meeting_id', 'id');
     }
 }
