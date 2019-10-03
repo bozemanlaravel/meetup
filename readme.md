@@ -8,7 +8,7 @@ Join us on [Bozeman Laravel Slack]
 - Run composer install
 - Add a file to `database/` called `database.sqlite`
 - Duplicate the `env.example` file and change the name to `.env`
-- To seed your initial admin user run php artisan migrate --seed
+- To seed your initial admin user run `php artisan migrate --seed`
 - In the terminal run `npm install && npm run dev`
 
 ## Testing
