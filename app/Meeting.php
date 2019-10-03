@@ -17,4 +17,23 @@ class Meeting extends Model
         return $this->hasManyThrough(User::class,MeetingUser::class,
             'user_id', 'id');
     }
+
+    /**
+     * @return HasManyThrough
+     */
+    public function attending_users() : HasManyThrough
+    {
+        return $this->hasManyThrough(User::class,MeetingUser::class,
+            'user_id', 'id')->where('meeting_user.attending', True);
+    }
+
+    /**
+     * @return HasManyThrough
+     */
+    public function declined_users() : HasManyThrough
+    {
+        return $this->hasManyThrough(User::class,MeetingUser::class,
+            'user_id', 'id')->where('meeting_user.attending', False);
+    }
+
 }

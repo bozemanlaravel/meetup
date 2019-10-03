@@ -23,4 +23,10 @@ class MeetingUserService
 
         return $meeting_user;
     }
+
+    public function getAllAttendees(Meeting $meeting)
+    {
+
+    }
+
 }

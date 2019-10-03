@@ -64,4 +64,26 @@ class MeetingUserServiceTest extends TestCase
         static::assertEquals($meeting_user->attending, False);
     }
 
+    /** @test */
+    public function meetings_have_attending_users()
+    {
+        $admin_user = $this->setup_admin_user();
+        [$meeting_data, $meeting] = $this->make_meeting($admin_user);
+        $meeting_user = (new MeetingUserService)->addUserToMeeting($admin_user, $meeting, True);
+
+        $user = Meeting::with('attending_users')->first();
+        static::assertEquals($admin_user->id, $user->id);
+    }
+
+    /** @test */
+    public function meetings_have_declined_users()
+    {
+        $admin_user = $this->setup_admin_user();
+        [$meeting_data, $meeting] = $this->make_meeting($admin_user);
+        $meeting_user = (new MeetingUserService)->addUserToMeeting($admin_user, $meeting, False);
+
+        $user = Meeting::with('declined_users')->first();
+        static::assertEquals($admin_user->id, $user->id);
+    }
+
 }
