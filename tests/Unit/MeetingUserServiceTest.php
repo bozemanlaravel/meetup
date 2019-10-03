@@ -21,9 +21,9 @@ class MeetingUserServiceTest extends TestCase
     /** @test */
     public function user_has_a_related_meeting()
     {
-        $admin_user = $this->setup_admin_user();
-        [$meeting_data, $meeting] = $this->make_meeting($admin_user);
-        $meeting_user = $this->make_meeting_user($admin_user, $meeting);
+        $admin_user = $this->setupAdminUser();
+        [$meeting_data, $meeting] = $this->makeMeeting($admin_user);
+        $meeting_user = $this->makeMeetingUser($admin_user, $meeting);
 
         $user = User::with(['meetings'])->first();
 
@@ -35,9 +35,9 @@ class MeetingUserServiceTest extends TestCase
     /** @test */
     public function meetings_have_user_relationship()
     {
-        $admin_user = $this->setup_admin_user();
-        [$meeting_data, $meeting] = $this->make_meeting($admin_user);
-        $meeting_user = $this->make_meeting_user($admin_user, $meeting);
+        $admin_user = $this->setupAdminUser();
+        [$meeting_data, $meeting] = $this->makeMeeting($admin_user);
+        $meeting_user = $this->makeMeetingUser($admin_user, $meeting);
 
         $test_meeting = Meeting::with('users')->first();
         foreach (array_keys($admin_user->toArray()) as $key) {
@@ -48,8 +48,8 @@ class MeetingUserServiceTest extends TestCase
     /** @test */
     public function user_can_attend_a_meeting()
     {
-        $admin_user = $this->setup_admin_user();
-        [$meeting_data, $meeting] = $this->make_meeting($admin_user);
+        $admin_user = $this->setupAdminUser();
+        [$meeting_data, $meeting] = $this->makeMeeting($admin_user);
 
         $meeting_user = (new MeetingUserService)->addUserToMeeting($admin_user, $meeting, True);
 
@@ -67,8 +67,8 @@ class MeetingUserServiceTest extends TestCase
     /** @test */
     public function meetings_have_attending_users()
     {
-        $admin_user = $this->setup_admin_user();
-        [$meeting_data, $meeting] = $this->make_meeting($admin_user);
+        $admin_user = $this->setupAdminUser();
+        [$meeting_data, $meeting] = $this->makeMeeting($admin_user);
         $meeting_user = (new MeetingUserService)->addUserToMeeting($admin_user, $meeting, True);
 
         $user = Meeting::with('attending_users')->first();
@@ -78,12 +78,62 @@ class MeetingUserServiceTest extends TestCase
     /** @test */
     public function meetings_have_declined_users()
     {
-        $admin_user = $this->setup_admin_user();
-        [$meeting_data, $meeting] = $this->make_meeting($admin_user);
+        $admin_user = $this->setupAdminUser();
+        [$meeting_data, $meeting] = $this->makeMeeting($admin_user);
         $meeting_user = (new MeetingUserService)->addUserToMeeting($admin_user, $meeting, False);
 
         $user = Meeting::with('declined_users')->first();
         static::assertEquals($admin_user->id, $user->id);
     }
 
+    /** @test */
+    public function get_all_attending_users()
+    {
+        $admin_user = $this->setupAdminUser();
+        [$meeting_data, $meeting] = $this->makeMeeting($admin_user);
+        $meeting_user = (new MeetingUserService)->addUserToMeeting($admin_user, $meeting, True);
+
+        $attending_users = (new MeetingUserService)->getAllAttendees($meeting);
+
+        static::assertEquals($admin_user->id, $attending_users->first()->id);
+    }
+
+    /** @test */
+    public function get_all_declined_users()
+    {
+        $admin_user = $this->setupAdminUser();
+        [$meeting_data, $meeting] = $this->makeMeeting($admin_user);
+        $meeting_user = (new MeetingUserService)->addUserToMeeting($admin_user, $meeting, False);
+
+        $declined_users = (new MeetingUserService)->getAllDeclined($meeting);
+
+        static::assertEquals($admin_user->id, $declined_users->first()->id);
+    }
+
+    /** @test */
+    public function user_can_decline_a_previously_attending_meeting()
+    {
+        $admin_user = $this->setupAdminUser();
+        [$meeting_data, $meeting] = $this->makeMeeting($admin_user);
+        (new MeetingUserService)->addUserToMeeting($admin_user, $meeting, True);
+
+        $meeting_user = (new MeetingUserService)->changeAttendanceOfMeeting($admin_user, $meeting, False);
+
+        static::assertFalse($meeting_user->attending);
+        $meeting_user->delete();
+
+        $meeting_user = (new MeetingUserService)->changeAttendanceOfMeeting($admin_user, $meeting, False);
+        static::assertFalse($meeting_user->attending);
+    }
+
+    /** @test */
+    public function user_can_decline_a_meeting_not_yet_accepted()
+    {
+        $admin_user = $this->setupAdminUser();
+        [$meeting_data, $meeting] = $this->makeMeeting($admin_user);
+
+        $meeting_user = (new MeetingUserService)->changeAttendanceOfMeeting($admin_user, $meeting, False);
+
+        static::assertFalse($meeting_user->attending);
+    }
 }
