@@ -15,6 +15,7 @@ class CreateMeetingsTable extends Migration
     {
         Schema::create('meetings', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('organizer_id');
             $table->string('name');
             $table->string('description');
             $table->datetime('start');
@@ -24,6 +25,8 @@ class CreateMeetingsTable extends Migration
             $table->string('location_url');
 
             $table->timestamps();
+
+            $table->foreign('organizer_id')->references('id')->on('users');
         });
     }
 }
