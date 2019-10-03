@@ -5,6 +5,9 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
+/**
+ * @property mixed id
+ */
 class Meeting extends Model
 {
     protected $guarded = [];
