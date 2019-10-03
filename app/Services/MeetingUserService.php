@@ -13,6 +13,12 @@ use App\User;
 
 class MeetingUserService
 {
+    /**
+     * @param User $user
+     * @param Meeting $meeting
+     * @param bool $attending
+     * @return MeetingUser
+     */
     public function addUserToMeeting(User $user, Meeting $meeting, bool $attending) : MeetingUser
     {
         $meeting_user = MeetingUser::create([
@@ -24,6 +30,12 @@ class MeetingUserService
         return $meeting_user;
     }
 
+    /**
+     * @param User $user
+     * @param Meeting $meeting
+     * @param bool $attending
+     * @return MeetingUser
+     */
     public function changeAttendanceOfMeeting(User $user, Meeting $meeting, bool $attending) : MeetingUser
     {
         $meeting_user = MeetingUser::where([
@@ -45,11 +57,19 @@ class MeetingUserService
         return $meeting_user;
     }
 
+    /**
+     * @param Meeting $meeting
+     * @return mixed
+     */
     public function getAllAttendees(Meeting $meeting)
     {
         return Meeting::find($meeting->id)->with(['attending_users']);
     }
 
+    /**
+     * @param Meeting $meeting
+     * @return mixed
+     */
     public function getAllDeclined(Meeting $meeting)
     {
         return Meeting::find($meeting->id)->with(['declined_users']);
