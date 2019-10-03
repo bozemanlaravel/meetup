@@ -10,15 +10,27 @@
                 </div>
             @endif
 
-            <div class="flex flex-col break-words bg-white border border-2 rounded shadow-md">
+            <div class="flex flex-col break-words bg-white border border-2 rounded shadow-md mb-10">
 
                 <div class="font-semibold bg-gray-200 text-gray-700 py-3 px-6 mb-0">
-                    Dashboard
+                    Meetings you're attending
                 </div>
 
                 <div class="w-full p-6">
                     <p class="text-gray-700">
-                        You are logged in!
+                       your meetings..
+                    </p>
+                </div>
+            </div>
+            <div class="flex flex-col break-words bg-white border border-2 rounded shadow-md">
+
+                <div class="font-semibold bg-gray-200 text-gray-700 py-3 px-6 mb-0">
+                    Upcoming meetings.
+                </div>
+
+                <div class="w-full p-6">
+                    <p class="text-gray-700">
+                       list upcoming here...
                     </p>
                 </div>
             </div>
