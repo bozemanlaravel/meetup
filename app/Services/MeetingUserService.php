@@ -10,10 +10,17 @@ namespace App\Services;
 use App\MeetingUser;
 use App\Meeting;
 use App\User;
+use Illuminate\Database\Eloquent\Builder;
 
 class MeetingUserService
 {
-    public function addUserToMeeting(User $user, Meeting $meeting, bool $attending) : MeetingUser
+    /**
+     * @param User $user
+     * @param Meeting $meeting
+     * @param bool $attending
+     * @return MeetingUser
+     */
+    final public function addUserToMeeting(User $user, Meeting $meeting, bool $attending) : MeetingUser
     {
         $meeting_user = MeetingUser::create([
             'user_id' => $user->id,
@@ -24,7 +31,13 @@ class MeetingUserService
         return $meeting_user;
     }
 
-    public function changeAttendanceOfMeeting(User $user, Meeting $meeting, bool $attending) : MeetingUser
+    /**
+     * @param User $user
+     * @param Meeting $meeting
+     * @param bool $attending
+     * @return MeetingUser
+     */
+    final public function changeAttendanceOfMeeting(User $user, Meeting $meeting, bool $attending) : MeetingUser
     {
         $meeting_user = MeetingUser::where([
             'user_id' => $user->id,
@@ -45,12 +58,20 @@ class MeetingUserService
         return $meeting_user;
     }
 
-    public function getAllAttendees(Meeting $meeting)
+    /**
+     * @param Meeting $meeting
+     * @return Builder
+     */
+    final public function getAllAttendees(Meeting $meeting) : Builder
     {
         return Meeting::find($meeting->id)->with(['attending_users']);
     }
 
-    public function getAllDeclined(Meeting $meeting)
+    /**
+     * @param Meeting $meeting
+     * @return Builder
+     */
+    final public function getAllDeclined(Meeting $meeting) : Builder
     {
         return Meeting::find($meeting->id)->with(['declined_users']);
     }
