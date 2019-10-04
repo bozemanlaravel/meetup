@@ -9,6 +9,7 @@ Join us on [Bozeman Laravel Slack]
 - Add a file to `database/` called `database.sqlite`
 - Duplicate the `env.example` file and change the name to `.env`
 - To seed your initial admin user, run `php artisan migrate --seed`
+- To generate an app key, run `php artisan key:generate`
 - In the terminal, run `npm install && npm run dev`
 
 ## Testing
