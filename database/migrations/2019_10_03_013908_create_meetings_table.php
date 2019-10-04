@@ -23,7 +23,7 @@ class CreateMeetingsTable extends Migration
             $table->string('location_name');
             $table->string('location_address');
             $table->string('location_url');
-
+            $table->uuid('uuid')->nullable();
             $table->timestamps();
 
             $table->foreign('organizer_id')->references('id')->on('users');

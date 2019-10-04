@@ -12,6 +12,15 @@ class Meeting extends Model
 {
     protected $guarded = [];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function (Meeting $meeting) {
+            $meeting->uuid = (string)Str::uuid();
+        });
+    }
+
     /**
      * @return HasManyThrough
      */
