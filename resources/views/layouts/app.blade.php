@@ -21,16 +21,15 @@
                         <a href="{{ url('/') }}" class="text-lg font-semibold text-gray-100 no-underline">
                             {{ config('app.name', 'Laravel') }}
                         </a>
+                        @can('create', App\Meeting::class)
+                            <a class="text-gray-300 text-sm ml-6" href="{{ url('/meetings/create') }}">New Meeting</a>
+                        @endcan
                     </div>
                     <div class="flex-1 text-right">
                         @guest
                             <a class="no-underline hover:underline text-gray-300 text-sm p-3" href="{{ route('login') }}">{{ __('Login') }}</a>
                         @else
-                            <span class="text-gray-300 text-sm pr-4">{{ Auth::user()->name }}</span>
-        
-                            @can('create', App\Meeting::class)
-                                <a href="#">New Meeting</a>
-                            @endcan
+                            <span class="text-gray-300 text-sm font-bold pr-4">Hello, {{ Auth::user()->first_name }}</span>
 
                             <a href="{{ route('logout') }}"
                                class="no-underline hover:underline text-gray-300 text-sm p-3"
