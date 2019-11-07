@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Meeting;
 use Illuminate\Http\Request;
+use App\Services\MeetingService;
 
 class MeetingsController extends Controller
 {
@@ -35,8 +36,7 @@ class MeetingsController extends Controller
      */
     public function store(Request $request)
     {
-        // Todo: Add and test form validation.
-        Meeting::create(array_merge($request->all(), ['organizer_id' => auth()->id()]));
+        (new MeetingService)->createMeeting($request->all(), auth()->id());
 
         return back()->withMessage('Meeting Created.');
     }
