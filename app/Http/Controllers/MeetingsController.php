@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Meeting;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Services\MeetingService;
 
 class MeetingsController extends Controller
@@ -11,9 +11,9 @@ class MeetingsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
-    public function index()
+    public function index() : Response
     {
         //
     }
@@ -21,9 +21,9 @@ class MeetingsController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
-    public function create()
+    public function create() : Response
     {
         return view('meetings.create');
     }
@@ -31,23 +31,25 @@ class MeetingsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request
+     * @return Response
      */
-    public function store(Request $request)
+    public function store(Request $request) : Response
     {
-        (new MeetingService)->createMeeting($request->all(), auth()->id());
+        if ((new MeetingService)->createMeeting($request->all(), auth()->id())) {
+            return back()->withMessage('Meeting Created.');
+        }
 
-        return back()->withMessage('Meeting Created.');
+        return back()->withMessage('Meeting creation failed.');
     }
 
     /**
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
-    public function show($id)
+    public function show(int $id) : Response
     {
         //
     }
@@ -56,9 +58,9 @@ class MeetingsController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
-    public function edit($id)
+    public function edit(int $id) : Response
     {
         //
     }
@@ -68,9 +70,9 @@ class MeetingsController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id) : Response
     {
         //
     }
@@ -79,10 +81,14 @@ class MeetingsController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
-    public function destroy($id)
+    public function destroy(int $id) : Response
     {
-        //
+        if ((new MeetingService)->deleteMeeting($id)) {
+            return back()->withMessage('Meeting Deleted.');
+        }
+
+        return back()->withMessage('Meeting failed to delete.');
     }
 }
