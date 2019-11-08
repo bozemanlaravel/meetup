@@ -13,6 +13,7 @@ use App\Traits\HasUserTests;
 class MeetingServiceTest extends TestCase
 {
     use HasUserTests;
+    use RefreshDatabase;
 
     /**
      * A basic feature test example.
@@ -22,7 +23,7 @@ class MeetingServiceTest extends TestCase
     public function testCanDeleteMeeting()
     {
         // $meeting_user = $this->signIn();
-        $meeting = factory(Meeting::class)->make()->save();
+        $meeting = factory(Meeting::class)->create();
         (new MeetingService)->deleteMeeting($meeting->id);
         $this->assertDatabaseMissing('meetings', ['id' => $meeting->id]);
     }
