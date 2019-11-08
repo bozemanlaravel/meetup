@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\Unit;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Meeting;
@@ -13,7 +12,6 @@ use App\Traits\HasUserTests;
 class MeetingServiceTest extends TestCase
 {
     use HasUserTests;
-    use RefreshDatabase;
 
     /**
      * A basic feature test example.

@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use App\Meeting;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class CreateMeetingsTest extends TestCase
 {

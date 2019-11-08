@@ -8,7 +8,6 @@ use App\Traits\HasUserTests;
 use App\Traits\HasMeetingTests;
 use App\User;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
