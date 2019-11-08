@@ -8,7 +8,6 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class CreateMeetingsTest extends TestCase
 {
-    use RefreshDatabase;
 
     /** @test */
     public function the_route_to_create_meetings_is_not_visible_to_guests()

@@ -14,7 +14,6 @@ use Tests\TestCase;
 
 class MeetingUserServiceTest extends TestCase
 {
-    use RefreshDatabase;
     use HasUserTests;
     use HasMeetingTests;
 
