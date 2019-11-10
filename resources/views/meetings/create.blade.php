@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="flex items-center">
-        <div class="md:w-1/2 md:mx-auto">
+        <div class="w-full px-4 md:px-0 md:w-1/2 md:mx-auto">
 
             @if (session('status'))
                 <div class="text-sm border border-t-8 rounded text-green-700 border-green-600 bg-green-100 px-3 py-4 mb-4" role="alert">
@@ -14,15 +14,13 @@
 
             <form action="/meetings" method="post">
                 @csrf
-                <input class="mt-8 text-2xl p-3 block w-full" type="text" placeholder="Name / Title" name="name">
+                <input class="mt-8 text-2xl p-3 w-full" type="text" placeholder="Name / Title" name="name">
                 <textarea class="mt-8 text-2xl p-3 w-full" placeholder="Description" rows="5" name="description"></textarea>
-                <div class="mt-8 flex">
-                    <input class="text-2xl md:w-1/2 mr-4 p-3" id="start" type="datetime-local" placeholder="Start date/time" name="start">
-                    <input class="text-2xl md:w-1/2 ml-4 p-3" id="end" type="datetime-local" placeholder="End date/time" name="end">
-                </div>
-                <input class="mt-8 text-2xl p-3 block w-full" type="text" placeholder="Location name" name="location_name">
-                <input class="mt-8 text-2xl p-3 block w-full" type="text" placeholder="Location address" name="location_address">
-                <input class="mt-8 text-2xl p-3 block w-full" type="text" placeholder="Location URL" name="location_url">
+                <input class="mt-8 text-2xl p-3 max-w-full" id="start" type="text" placeholder="Start date/time" name="start">
+                <input class="mt-8 text-2xl p-3 max-w-full" id="end" type="text" placeholder="End date/time" name="end">
+                <input class="mt-8 text-2xl p-3 w-full" type="text" placeholder="Location name" name="location_name">
+                <input class="mt-8 text-2xl p-3 w-full" type="text" placeholder="Location address" name="location_address">
+                <input class="mt-8 text-2xl p-3 w-full" type="text" placeholder="Location URL" name="location_url">
                 <input class="text-2xl p-3 bg-blue-400 text-white my-8 cursor-pointer" type="submit" value="Create meeting">
             </form>
         </div>
