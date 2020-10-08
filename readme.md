@@ -4,6 +4,8 @@
 Join us on [Bozeman Laravel Slack]
 
 ## Getting Started
+Note: If you don't already, please follow the instructions from the Laravel Documentation to install [Homestead.](https://laravel.com/docs/6.x/homestead) 
+
 - Clone this repository on your machine
 - Run `composer install`
 - Add a file to `database/` called `database.sqlite`
