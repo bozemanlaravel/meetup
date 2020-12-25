@@ -18,8 +18,9 @@
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",
-        "guzzlehttp/guzzle": "^7.0.1",
         "fzaninotto/faker": "^1.4",
+        "guzzlehttp/guzzle": "^7.0.1",
+        "laravel/sail": "^1.0",
         "mockery/mockery": "^1.0",
         "nunomaduro/collision": "^5.0",
         "phpunit/phpunit": "^9.0"
