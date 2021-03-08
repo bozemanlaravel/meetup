@@ -4,6 +4,8 @@
 Join us on [Bozeman Laravel Slack]
 
 ## Requirements
+- [Docker](https://www.docker.com/products/docker-desktop)
+- [Docker Compose](https://docs.docker.com/compose/install/)
 - [PHP 7](https://www.php.net/downloads)
 - [Composer](https://getcomposer.org/download/)
 - [NodeJS](https://nodejs.org/en/)
