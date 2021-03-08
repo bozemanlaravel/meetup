@@ -3,15 +3,17 @@
 ## We're building this open source version of meetup.com as a fun way to learn and collaborate.
 Join us on [Bozeman Laravel Slack]
 
+## Requirements
+- [PHP 7](https://www.php.net/downloads)
+- [Composer](https://getcomposer.org/download/)
+- [NodeJS](https://nodejs.org/en/)
 ## Getting Started
-Note: If you don't already, please follow the instructions from the Laravel Documentation to install [Homestead.](https://laravel.com/docs/6.x/homestead) 
-
-- Clone this repository on your machine
+- Clone this repository on your machine and `cd` into it
 - Run `composer install`
-- Add a file to `database/` called `database.sqlite`
 - Duplicate the `env.example` file and change the name to `.env`
-- To seed your initial admin user, run `php artisan migrate --seed`
-- To generate an app key, run `php artisan key:generate`
+- Run `./vendor/bin/sail up`
+- To seed your initial admin user, run `sail artisan migrate --seed`
+- To generate an app key, run `sail artisan key:generate`
 - In the terminal, run `npm install && npm run dev`
 
 ## Testing
