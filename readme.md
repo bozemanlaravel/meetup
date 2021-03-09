@@ -25,7 +25,7 @@ The tests are set up to use a sqlite :memory: database, so there is no configura
 
 ### To run the test suite
 - Open the terminal to the root of the project.
-- Type in vendor/bin/phpunit and it should just work. 
+- Run `sail test`.
 
 
 [Bozeman Laravel Slack]: https://join.slack.com/t/bozemanlaravel/shared_invite/enQtMjczODQ1Mzg4ODg2LWRjYWFlMzg0YWIzZjAzOTY1YjQyN2RjMmZjNDAxNTNlNmU5MjRiYzVlYWUyOTU5NWY5ODMyNDliNTMyMGU0NWI
