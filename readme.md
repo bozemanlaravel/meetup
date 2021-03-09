@@ -14,8 +14,8 @@ Join us on [Bozeman Laravel Slack]
 - Run `composer install`
 - Duplicate the `env.example` file and change the name to `.env`
 - Run `./vendor/bin/sail up`
-- To seed your initial admin user, run `sail artisan migrate --seed`
-- To generate an app key, run `sail artisan key:generate`
+- To seed your initial admin user, run `./vendor/bin/sail artisan migrate --seed`
+- To generate an app key, run `./vendor/bin/sail artisan key:generate`
 - In the terminal, run `npm install && npm run dev`
 
 ## Testing
@@ -25,7 +25,7 @@ The tests are set up to use a sqlite :memory: database, so there is no configura
 
 ### To run the test suite
 - Open the terminal to the root of the project.
-- Run `sail test`.
+- Run `./vendor/bin/sail test`
 
 
 [Bozeman Laravel Slack]: https://join.slack.com/t/bozemanlaravel/shared_invite/enQtMjczODQ1Mzg4ODg2LWRjYWFlMzg0YWIzZjAzOTY1YjQyN2RjMmZjNDAxNTNlNmU5MjRiYzVlYWUyOTU5NWY5ODMyNDliNTMyMGU0NWI
