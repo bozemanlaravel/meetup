@@ -38,5 +38,4 @@ trait HasMeetingTests
         ]);
         return $meeting_user;
     }
-
 }

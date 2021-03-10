@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Meeting;
 class HomeController extends Controller
 {
     /**
@@ -23,6 +23,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $meetings = Meeting::all();
+
+        return view('home', [
+            'meetings' => $meetings
+        ]);
     }
 }

@@ -10,30 +10,20 @@
                 </div>
             @endif
 
-            <div class="flex flex-col break-words bg-white border border-2 rounded shadow-md mb-10">
-
-                <div class="font-semibold bg-gray-200 text-gray-700 py-3 px-6 mb-0">
-                    Meetings you're attending
-                </div>
-
-                <div class="w-full p-6">
-                    <p class="text-gray-700">
-                       your meetings..
-                    </p>
-                </div>
+            @foreach ($meetings as $mt)
+            <div class="break-words bg-white border border-2 rounded shadow-md p-6
+            @if(!$loop->first)
+            mt-8
+            @endif">
+                <p class="text-gray-600 text-lg">{{ sql_date_to_format($mt->start, 'l, F jS, Y \\a\\t g:i a') }}</p>
+                <h2 class="text-gray-700 text-xl mt-4">
+                    {{ $mt->name }}
+                </h2>
+                <p class="text-gray-700 mt-4 text-lg">
+                    {{ $mt->description }}
+                </p>
             </div>
-            <div class="flex flex-col break-words bg-white border border-2 rounded shadow-md">
-
-                <div class="font-semibold bg-gray-200 text-gray-700 py-3 px-6 mb-0">
-                    Upcoming meetings.
-                </div>
-
-                <div class="w-full p-6">
-                    <p class="text-gray-700">
-                       list upcoming here...
-                    </p>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 @endsection
