@@ -90,8 +90,20 @@ class MeetingsController extends Controller
     public function attend($id) {
         $meeting = Meeting::find($id);
 
-        (new MeetingUserService)->addUserToMeeting(auth()->user(), $meeting, true);
+        if ($meeting->users->contains(auth()->id())) {
+            (new MeetingUserService)->changeAttendanceOfMeeting(auth()->user(), $meeting, true);
+        } else {
+            (new MeetingUserService)->addUserToMeeting(auth()->user(), $meeting, true);
+        }
 
         return back()->withMessage('Attending meeting.');
+    }
+
+    public function decline($id) {
+        $meeting = Meeting::find($id);
+
+        (new MeetingUserService)->changeAttendanceOfMeeting(auth()->user(), $meeting, false);
+
+        return back()->withMessage('Declining meeting.');
     }
 }
