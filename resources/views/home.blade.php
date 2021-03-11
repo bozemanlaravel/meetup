@@ -22,6 +22,15 @@
                 <p class="text-gray-700 mt-4 text-lg">
                     {{ $mt->description }}
                 </p>
+
+                @if (!$mt->users->contains($auth_user->id))
+                <form method="post" action="{{ route('meetings.attend', ['id' => $mt->id]) }}">
+                    @csrf
+                    <button type="submit" class="inline-block mt-4 bg-blue-800 text-white p-2 rounded">Attend</button>
+                </form>
+                @else
+                <button class="inline-block mt-4 bg-green-500 text-white p-2 rounded">Going!</button>
+                @endif
             </div>
             @endforeach
         </div>

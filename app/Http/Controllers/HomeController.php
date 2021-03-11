@@ -27,7 +27,8 @@ class HomeController extends Controller
         $meetings = Meeting::all();
 
         return view('home', [
-            'meetings' => $meetings
+            'meetings' => $meetings,
+            'auth_user' => auth()->user(),
         ]);
     }
 }

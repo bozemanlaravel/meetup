@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Meeting;
 use Illuminate\Http\Request;
 use App\Services\MeetingService;
+use App\Services\MeetingUserService;
 
 class MeetingsController extends Controller
 {
@@ -84,5 +85,13 @@ class MeetingsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function attend($id) {
+        $meeting = Meeting::find($id);
+
+        (new MeetingUserService)->addUserToMeeting(auth()->user(), $meeting, true);
+
+        return back()->withMessage('Attending meeting.');
     }
 }
