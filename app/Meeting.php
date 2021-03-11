@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Str;
 
@@ -25,28 +26,25 @@ class Meeting extends Model
     /**
      * @return HasManyThrough
      */
-    public function users() : HasManyThrough
+    public function users() : BelongsToMany
     {
-        return $this->hasManyThrough(User::class,MeetingUser::class,
-            'user_id', 'id');
+        return $this->belongsToMany(User::class);
     }
 
     /**
      * @return HasManyThrough
      */
-    public function attending_users() : HasManyThrough
+    public function attending_users() : BelongsToMany
     {
-        return $this->hasManyThrough(User::class,MeetingUser::class,
-            'user_id', 'id')->where('meeting_user.attending', True);
+        return $this->belongsToMany(User::class)->where('meeting_user.attending', True);
     }
 
     /**
      * @return HasManyThrough
      */
-    public function declined_users() : HasManyThrough
+    public function declined_users() : BelongsToMany
     {
-        return $this->hasManyThrough(User::class,MeetingUser::class,
-            'user_id', 'id')->where('meeting_user.attending', False);
+        return $this->belongsToMany(User::class)->where('meeting_user.attending', False);
     }
 
 }
