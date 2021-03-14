@@ -12,6 +12,7 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "^8.0",
         "laravel/legacy-factories": "^1.0",
+        "laravel/slack-notification-channel": "^2.3",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^3.0",
         "livewire/livewire": "^1"

@@ -8,6 +8,7 @@
 
 namespace App\Services;
 use App\MeetingUser;
+use App\Services\ReminderService;
 use App\Meeting;
 use App\User;
 use Illuminate\Database\Eloquent\Builder;
@@ -27,6 +28,12 @@ class MeetingUserService
             'meeting_id' => $meeting->id,
             'attending' => $attending
         ]);
+
+        if ($meeting_user->attending == true) {
+            (new ReminderService)->createReminders($meeting_user);
+        } else {
+            (new ReminderService)->removeReminders($meeting_user);
+        }
 
         return $meeting_user;
     }
@@ -54,6 +61,12 @@ class MeetingUserService
 
         $meeting_user->attending = $attending;
         $meeting_user->save();
+
+        if ($meeting_user->attending == true) {
+            (new ReminderService)->createReminders($meeting_user);
+        } else {
+            (new ReminderService)->removeReminders($meeting_user);
+        }
 
         return $meeting_user;
     }

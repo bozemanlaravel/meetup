@@ -4,7 +4,7 @@ namespace App;
 
 use App\Services\RoleService;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -43,9 +43,8 @@ class User extends Authenticatable
     /**
      * @return HasManyThrough
      */
-    public function meetings() : HasManyThrough
+    public function meetings() : BelongsToMany
     {
-        return $this->hasManyThrough(Meeting::class,MeetingUser::class,
-            'meeting_id', 'id');
+        return $this->belongsToMany(Meeting::class);
     }
 }
