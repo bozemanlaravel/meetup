@@ -40,14 +40,14 @@
                                 </p>
                             @endif
                         </div>
-    
+
                         <div class="flex flex-wrap mb-6">
                             <label for="username" class="block text-gray-700 text-sm font-bold mb-2">
                                 {{ __('User Name') }}:
                             </label>
-        
+
                             <input id="username" name="username" type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline{{ $errors->has('name') ? ' border-red-500' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
-        
+
                             @if ($errors->has('username'))
                                 <p class="text-red-500 text-xs italic mt-4">
                                     {{ $errors->first('username') }}
@@ -65,6 +65,20 @@
                             @if ($errors->has('email'))
                                 <p class="text-red-500 text-xs italic mt-4">
                                     {{ $errors->first('email') }}
+                                </p>
+                            @endif
+                        </div>
+
+                        <div class="flex flex-wrap mb-6">
+                            <label for="slack_username" class="block text-gray-700 text-sm font-bold mb-2">
+                                {{ __('Slack Username') }}:
+                            </label>
+
+                            <input id="slack_username" type="slack_username" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline{{ $errors->has('slack_username') ? ' border-red-500' : '' }}" name="slack_username" value="{{ old('slack_username') }}" required>
+
+                            @if ($errors->has('slack_username'))
+                                <p class="text-red-500 text-xs italic mt-4">
+                                    {{ $errors->first('slack_username') }}
                                 </p>
                             @endif
                         </div>

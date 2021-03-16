@@ -43,6 +43,7 @@ class RegisterController extends Controller
             'last_name' => ['required', 'string', 'max:255'],
             'username' => ['required', 'string', 'min:2', 'max:255', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'slack_username' => ['string', 'max:255'],
             'password' => ['required', 'string', 'confirmed'],
         ]);
     }
@@ -60,6 +61,7 @@ class RegisterController extends Controller
             'last_name' => $data['last_name'],
             'username' => $data['username'],
             'email' => $data['email'],
+            'slack_username' => $data['slack_username'],
             'role_id' => RoleService::getId('user'),
             'password' => Hash::make($data['password']),
         ]);
